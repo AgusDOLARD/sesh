@@ -1,0 +1,23 @@
+name: Update version
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    working-directory: ./
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set current tag
+        run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV
+
+      - name: Print current tag
+        run: echo ${{ env.GIT_TAG }}
+
+      - name: Update version in config/version.go
+        run: sed -i "s/=.*/= \"${{ env.GIT_TAG }}\"/" config/version.go

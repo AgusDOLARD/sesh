@@ -17,13 +17,12 @@ type Man struct {
 }
 
 func main() {
-	version := "dev"
 	templateFile := "man.tmpl"
 	manPageName := "sesh.1"
 
 	man := &Man{
 		Date: time.Now(),
-		App:  seshcli.App(version),
+		App:  seshcli.App(),
 	}
 
 	funcMap := template.FuncMap{

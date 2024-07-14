@@ -7,10 +7,8 @@ import (
 	"github.com/joshmedeski/sesh/seshcli"
 )
 
-var version = "dev"
-
 func main() {
-	app := seshcli.App(version)
+	app := seshcli.App()
 	if err := app.Run(os.Args); err != nil {
 		log.Fatal(err)
 	}
